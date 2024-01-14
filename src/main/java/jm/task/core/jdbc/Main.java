@@ -4,14 +4,12 @@ import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.service.UserService;
 import jm.task.core.jdbc.service.UserServiceImpl;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
         // реализуйте алгоритм здесь
         UserService userService = new UserServiceImpl();
-        try {
             userService.createUsersTable();
             userService.saveUser("Yuriy", "Korobaev", (byte) 58);
             userService.saveUser("Anatoliy", "Volkov", (byte) 30);
@@ -22,9 +20,6 @@ public class Main {
             printTableBody(userList);
             userService.cleanUsersTable();
             userService.dropUsersTable();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     public static void printTableOut() {
