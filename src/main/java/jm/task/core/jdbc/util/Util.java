@@ -10,7 +10,11 @@ public class Util {
     private static String dbUserName = "postgres";
     private static String dbPassword = "0313";
 
-    public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(dbURL, dbUserName, dbPassword);
+    public static Connection getConnection() {
+        try {
+            return DriverManager.getConnection(dbURL, dbUserName, dbPassword);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
