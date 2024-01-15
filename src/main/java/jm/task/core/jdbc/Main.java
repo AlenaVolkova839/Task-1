@@ -11,20 +11,17 @@ public class Main {
     public static void main(String[] args) {
         // реализуйте алгоритм здесь
         UserService userService = new UserServiceImpl();
-        try {
-            userService.createUsersTable();
-            userService.saveUser("Yuriy", "Korobaev", (byte) 58);
-            userService.saveUser("Anatoliy", "Volkov", (byte) 30);
-            userService.saveUser("Alina", "Chayka", (byte) 28);
-            userService.saveUser("Dinara", "Akjigitova", (byte) 34);
-            List<User> userList = userService.getAllUsers();
-            printTableOut();
-            printTableBody(userList);
-            userService.cleanUsersTable();
-            userService.dropUsersTable();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+
+        userService.createUsersTable();
+        userService.saveUser("Yuriy", "Korobaev", (byte) 58);
+        userService.saveUser("Anatoliy", "Volkov", (byte) 30);
+        userService.saveUser("Alina", "Chayka", (byte) 28);
+        userService.saveUser("Dinara", "Akjigitova", (byte) 34);
+        List<User> userList = userService.getAllUsers();
+        printTableOut();
+        printTableBody(userList);
+        userService.cleanUsersTable();
+        userService.dropUsersTable();
     }
 
     public static void printTableOut() {

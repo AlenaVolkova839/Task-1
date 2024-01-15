@@ -20,7 +20,8 @@ public class Util {
         try {
             return DriverManager.getConnection(dbURL, dbUserName, dbPassword);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println("Ошибка подключения к базе данных");
+            return null;
         }
     }
 
@@ -29,22 +30,19 @@ public class Util {
             try {
                 Configuration configuration = new Configuration();
 
-                // Настройки подключения к базе данных
                 configuration.setProperty("hibernate.connection.url", "jdbc:postgresql://localhost:5432/postgres");
                 configuration.setProperty("hibernate.connection.username", "postgres");
                 configuration.setProperty("hibernate.connection.password", "0313");
                 configuration.setProperty("hibernate.connection.driver_class", "org.postgresql.Driver");
 
-                // Настройки Hibernate
                 configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
                 configuration.setProperty("hibernate.show_sql", "true");
                 configuration.setProperty("hibernate.hbm2ddl.auto", "update");
 
-                // Добавление классов сущностей
                 configuration.addAnnotatedClass(User.class);
                 sessionFactory = configuration.buildSessionFactory();
             } catch (Exception e) {
-                e.printStackTrace();
+                System.out.println("Ошибка создания сессии: " + e.getMessage());
             }
         }
         return sessionFactory;
